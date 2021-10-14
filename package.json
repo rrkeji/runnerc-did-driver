@@ -1,0 +1,50 @@
+{
+  "name": "runnerc-did-driver",
+  "version": "2.2.0",
+  "private": "true",
+  "description": "Runnerc DID method driver",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "getVersion": "echo \"console.log(require('./package.json').version)\" | node",
+    "build": "docker build -t jinisu/uni-resolver-driver-did-runnerc:latest -t jinisu/uni-resolver-driver-did-runnerc:$(yarn -s getVersion) .",
+    "push": "docker push jinisu/uni-resolver-driver-did-runnerc:latest && docker push jinisu/uni-resolver-driver-did-runnerc:$(yarn -s getVersion)",
+    "release": "semantic-release --debug"
+  },
+  "author": "Christian Lundkvist",
+  "contributors": [
+    "Andres Junge <andres.junge@consensys.net>",
+    "Mircea Nistor <mircea.nistor@mesh.xyz>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rrkeji/runnerc-did-driver.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "did-resolver": "3.1.0",
+    "ethr-did-resolver": "4.3.4",
+    "express": "4.17.1",
+    "nacl-did": "1.0.1",
+    "web-did-resolver": "2.0.4"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "5.0.1",
+    "@semantic-release/commit-analyzer": "8.0.1",
+    "@semantic-release/exec": "5.0.0",
+    "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.2.3",
+    "@semantic-release/npm": "7.1.3",
+    "@semantic-release/release-notes-generator": "9.0.2",
+    "jest": "27.0.4",
+    "semantic-release": "17.4.3",
+    "supertest": "6.1.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
