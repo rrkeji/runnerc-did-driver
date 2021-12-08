@@ -1,0 +1,43 @@
+name: Build, Test and Publish
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+jobs:
+  build-test-publish:
+    env:
+      GH_TOKEN: ${{ secrets.MY_TOKEN || github.token }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+      - name: setup git coordinates
+        run: |
+          git remote set-url origin https://rrkeji:$GH_TOKEN@github.com/rrkeji/runnerc-did-driver.git
+          git config user.name 'rrkeji'
+          git config user.email 'rrkeji@163.com'
+      - name: Login to DockerHub Registry
+        run: echo $DOCKERHUB_PASSWORD | docker login -u rrkeji --password-stdin
+      - name: Push the tagged Docker image
+        run: yarn release
+        
