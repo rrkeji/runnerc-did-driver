@@ -40,5 +40,5 @@ jobs:
       - name: Push the tagged Docker image
         env:
           GH_TOKEN: ${{ secrets.MY_TOKEN || github.token }}
-        run: yarn push
+        run: yarn build && yarn push
         
