@@ -1,6 +1,6 @@
 {
   "name": "runnerc-did-driver",
-  "version": "2.2.0",
+  "version": "0.1.0",
   "private": "true",
   "description": "Runnerc DID method driver",
   "main": "src/server.js",
@@ -12,10 +12,9 @@
     "push": "docker push jinisu/uni-resolver-driver-did-runnerc:latest && docker push jinisu/uni-resolver-driver-did-runnerc:$(yarn -s getVersion)",
     "release": "semantic-release --debug"
   },
-  "author": "Christian Lundkvist",
+  "author": "jinisu",
   "contributors": [
-    "Andres Junge <andres.junge@consensys.net>",
-    "Mircea Nistor <mircea.nistor@mesh.xyz>"
+    "jinisu <jinisu@163.com>"
   ],
   "repository": {
     "type": "git",
@@ -26,8 +25,7 @@
     "did-resolver": "3.1.0",
     "ethr-did-resolver": "4.3.4",
     "express": "4.17.1",
-    "nacl-did": "1.0.1",
-    "web-did-resolver": "2.0.4"
+    "runnerc-did-resolver": "file:../runnerc-did-resolver/"
   },
   "devDependencies": {
     "@semantic-release/changelog": "5.0.1",
