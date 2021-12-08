@@ -8,8 +8,8 @@
     "start": "node src/server.js",
     "test": "jest",
     "getVersion": "echo \"console.log(require('./package.json').version)\" | node",
-    "build": "docker build -t jinisu/uni-resolver-driver-did-runnerc:latest -t jinisu/uni-resolver-driver-did-runnerc:$(yarn -s getVersion) .",
-    "push": "docker push jinisu/uni-resolver-driver-did-runnerc:latest && docker push jinisu/uni-resolver-driver-did-runnerc:$(yarn -s getVersion)",
+    "build": "docker build -t rrkeji/uni-resolver-driver-did-runnerc:latest -t rrkeji/uni-resolver-driver-did-runnerc:$(yarn -s getVersion) .",
+    "push": "docker push rrkeji/uni-resolver-driver-did-runnerc:latest && docker push rrkeji/uni-resolver-driver-did-runnerc:$(yarn -s getVersion)",
     "release": "semantic-release --debug"
   },
   "author": "jinisu",
