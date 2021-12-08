@@ -30,7 +30,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install
-      - run: yarn test
       - name: setup git coordinates
         run: |
           git remote set-url origin https://rrkeji:$GH_TOKEN@github.com/rrkeji/runnerc-did-driver.git
